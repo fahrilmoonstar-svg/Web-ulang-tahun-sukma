@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Sukma · ultah</title>
+  <title>Sukma · Ultah</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,7 +26,6 @@
       overflow-x: hidden;
     }
 
-    /* background gradasi dinamis */
     body::before {
       content: '';
       position: fixed;
@@ -61,7 +60,6 @@
       transition: all 0.3s;
     }
 
-    /* header — bold & bersih */
     .head {
       display: flex;
       align-items: baseline;
@@ -113,12 +111,11 @@
       border-radius: 50%;
     }
 
-    /* galeri — efek glassmorphism */
     .gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
 
     .gallery-item {
@@ -171,21 +168,21 @@
       opacity: 0.9;
     }
 
-    /* tombol — keren dengan efek hover */
     .action-row {
       display: flex;
-      gap: 12px;
-      margin-bottom: 22px;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
     }
 
     .btn {
       flex: 1;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 14px 16px;
+      padding: 12px 14px;
       border-radius: 60px;
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 400;
       color: rgba(255, 255, 255, 0.7);
       display: flex;
@@ -196,6 +193,7 @@
       cursor: pointer;
       letter-spacing: 0.3px;
       backdrop-filter: blur(4px);
+      min-width: 0;
     }
 
     .btn:hover {
@@ -211,7 +209,7 @@
     }
 
     .btn .icon {
-      font-size: 1.1rem;
+      font-size: 1rem;
       opacity: 0.6;
       transition: 0.2s;
     }
@@ -231,7 +229,6 @@
       border-color: rgba(200, 150, 180, 0.25);
     }
 
-    /* pesan — elegan */
     .message-box {
       background: rgba(255, 255, 255, 0.03);
       border-radius: 28px;
@@ -249,6 +246,7 @@
       line-height: 1.6;
       letter-spacing: 0.2px;
       backdrop-filter: blur(4px);
+      margin-bottom: 16px;
     }
 
     .message-box .emoji {
@@ -262,6 +260,27 @@
       font-weight: 400;
     }
 
+    .spotify-wrapper {
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .spotify-wrapper:hover {
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .spotify-wrapper iframe {
+      display: block;
+      width: 100%;
+      height: 80px;
+      border: 0;
+    }
+
     .footer-note {
       margin-top: 18px;
       font-size: 0.65rem;
@@ -273,7 +292,6 @@
       padding-top: 16px;
     }
 
-    /* canvas confetti — super halus */
     #confetti-canvas {
       position: fixed;
       top: 0;
@@ -285,7 +303,6 @@
       opacity: 0.6;
     }
 
-    /* animasi pop halus */
     .gallery-item.pop {
       animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
@@ -295,13 +312,13 @@
       100% { transform: scale(1); }
     }
 
-    /* responsive */
     @media (max-width: 480px) {
       .container { padding: 24px 18px 28px; border-radius: 32px; }
       .head h1 { font-size: 2.2rem; }
       .gallery { gap: 8px; }
-      .btn { font-size: 0.75rem; padding: 12px 12px; }
+      .btn { font-size: 0.7rem; padding: 10px 10px; }
       .message-box { font-size: 0.85rem; padding: 16px 18px; min-height: 60px; }
+      .spotify-wrapper iframe { height: 80px; }
     }
   </style>
 </head>
@@ -320,31 +337,43 @@
       <span>diam & terang</span>
     </div>
 
-    <!-- 5 foto -->
+    <!-- ===== GALERI 5 FOTO — PAKAI foto1.png s/d foto5.png ===== -->
     <div class="gallery" id="galleryContainer">
       <div class="gallery-item" data-moment="senja">
-        <img src="foto1.png" alt="momen sukma" loading="lazy">
+        <img src="assets/foto1.png" alt="Momen Sukma 1" loading="lazy">
         <div class="label">senja</div>
       </div>
       <div class="gallery-item" data-moment="tenang">
-        <img src="foto2.png" alt="momen sukma" loading="lazy">
+        <img src="assets/foto2.png" alt="Momen Sukma 2" loading="lazy">
         <div class="label">tenang</div>
       </div>
       <div class="gallery-item" data-moment="hangat">
-        <img src="foto3.png" alt="momen sukma" loading="lazy">
+        <img src="assets/foto3.png" alt="Momen Sukma 3" loading="lazy">
         <div class="label">hangat</div>
       </div>
       <div class="gallery-item" data-moment="jernih">
-        <img src="foto4.png" alt="momen sukma" loading="lazy">
+        <img src="assets/foto4.png" alt="Momen Sukma 4" loading="lazy">
         <div class="label">jernih</div>
       </div>
       <div class="gallery-item" data-moment="tabah">
-        <img src="foto5.png" alt="momen sukma" loading="lazy">
+        <img src="assets/foto5.png" alt="Momen Sukma 5" loading="lazy">
         <div class="label">tabah</div>
       </div>
     </div>
 
-    <!-- aksi -->
+    <!-- SPOTIFY PLAYER -->
+    <div class="spotify-wrapper">
+      <iframe 
+        src="https://open.spotify.com/embed/track/4GfK1qOF3uBWidbPlTCQRL?utm_source=generator&theme=0" 
+        width="100%" 
+        height="80" 
+        frameborder="0" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy">
+      </iframe>
+    </div>
+
+    <!-- ACTION ROW -->
     <div class="action-row">
       <button class="btn" id="btnMessage">
         <span class="icon">✦</span> pesan
@@ -354,19 +383,19 @@
       </button>
     </div>
 
-    <!-- pesan -->
+    <!-- MESSAGE -->
     <div class="message-box" id="messageBox">
       <span class="emoji">—</span>
       <span id="messageText">selamat, <span class="highlight">Sukma</span></span>
       <span class="emoji">—</span>
     </div>
 
-    <div class="footer-note">untuk adik · diam-diam istimewa</div>
+    <div class="footer-note">untuk adik · diam-diam istimewa · ♪ monokrom</div>
   </div>
 
   <script>
     (function() {
-      // ===== CONFETTI — super smooth =====
+      // ===== CONFETTI =====
       const canvas = document.getElementById('confetti-canvas');
       const ctx = canvas.getContext('2d');
       let w = window.innerWidth, h = window.innerHeight;
@@ -440,14 +469,6 @@
         }
       }
 
-      function stopConfetti() {
-        running = false;
-        if (frame) { cancelAnimationFrame(frame); frame = null; }
-        ctx.clearRect(0, 0, w, h);
-        particles = [];
-      }
-
-      // start dengan sedikit confetti
       setTimeout(() => { startConfetti(20); }, 500);
 
       // ===== INTERAKSI =====
@@ -476,7 +497,6 @@
         }, 120);
       }
 
-      // tombol pesan
       document.getElementById('btnMessage').addEventListener('click', function() {
         const msg = messages[Math.floor(Math.random() * messages.length)];
         setMessage(msg);
@@ -485,14 +505,10 @@
         setTimeout(() => this.style.background = '', 200);
       });
 
-      // tombol rayakan — full effect
       document.getElementById('btnCelebrate').addEventListener('click', function() {
-        // confetti banyak
         startConfetti(45);
-        // pesan random
         const msg = messages[Math.floor(Math.random() * messages.length)];
         setMessage(msg);
-        // pop semua foto
         galleryItems.forEach((item, idx) => {
           setTimeout(() => {
             item.classList.remove('pop');
@@ -500,26 +516,21 @@
             item.classList.add('pop');
           }, idx * 70);
         });
-        // efek tombol
         this.style.transform = 'scale(0.95)';
         setTimeout(() => this.style.transform = '', 150);
         this.style.background = 'rgba(200,150,180,0.3)';
         setTimeout(() => this.style.background = '', 300);
       });
 
-      // klik foto
       galleryItems.forEach((item) => {
         item.addEventListener('click', function() {
           const label = this.querySelector('.label')?.innerText.trim() || 'momen';
           const cap = label.charAt(0).toUpperCase() + label.slice(1);
           setMessage(`momen <span class="highlight">${cap}</span> · untuk Sukma`);
-          // pop
           this.classList.remove('pop');
           void this.offsetWidth;
           this.classList.add('pop');
-          // confetti tipis
           startConfetti(10);
-          // highlight border
           galleryItems.forEach(i => i.style.borderColor = 'rgba(255,255,255,0.04)');
           this.style.borderColor = 'rgba(255,200,180,0.3)';
           setTimeout(() => {
@@ -528,10 +539,9 @@
         });
       });
 
-      // resize handler
       window.addEventListener('resize', resize);
 
-      console.log('✦ untuk Sukma');
+      console.log('✦ Monokrom · untuk Sukma');
     })();
   </script>
 
