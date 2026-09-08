@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Sukma · ultah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0a0a;
+      font-family: 'Space Grotesk', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #f0ece8;
+      overflow-x: hidden;
+    }
+
+    /* background gradasi dinamis */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at 30% 50%, rgba(180, 80, 120, 0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 20%, rgba(120, 80, 180, 0.08) 0%, transparent 50%),
+                  radial-gradient(ellipse at 50% 80%, rgba(200, 120, 80, 0.06) 0%, transparent 50%);
+      z-index: 0;
+      animation: ambientMove 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambientMove {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(2%, -2%) scale(1.05); }
+    }
+
+    .container {
+      max-width: 560px;
+      width: 100%;
+      background: rgba(18, 16, 16, 0.75);
+      backdrop-filter: blur(24px) saturate(1.2);
+      -webkit-backdrop-filter: blur(24px) saturate(1.2);
+      border-radius: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      padding: 32px 28px 36px;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s;
+    }
+
+    /* header — bold & bersih */
+    .head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+      gap: 4px 0;
+    }
+
+    .head h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #f0ece8 0%, #c4b5ab 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+    }
+
+    .head .year {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 6px 16px;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      letter-spacing: 0.5px;
+    }
+
+    .subhead {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 4px 0 24px;
+      color: rgba(255, 255, 255, 0.35);
+      font-weight: 300;
+      font-size: 0.85rem;
+      letter-spacing: 0.3px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding-bottom: 14px;
+    }
+
+    .subhead .dot {
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+    }
+
+    /* galeri — efek glassmorphism */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1 / 1;
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.4s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item .label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 10px 10px;
+      background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, transparent 100%);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      text-align: center;
+      text-transform: uppercase;
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    /* tombol — keren dengan efek hover */
+    .action-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .btn {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 14px 16px;
+      border-radius: 60px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      backdrop-filter: blur(4px);
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn:active {
+      transform: scale(0.96) translateY(0);
+    }
+
+    .btn .icon {
+      font-size: 1.1rem;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    .btn:hover .icon {
+      opacity: 1;
+    }
+
+    .btn-primary {
+      background: rgba(200, 150, 180, 0.12);
+      border-color: rgba(200, 150, 180, 0.15);
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .btn-primary:hover {
+      background: rgba(200, 150, 180, 0.2);
+      border-color: rgba(200, 150, 180, 0.25);
+    }
+
+    /* pesan — elegan */
+    .message-box {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 28px;
+      padding: 18px 22px;
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.75);
+      transition: all 0.4s ease;
+      text-align: center;
+      line-height: 1.6;
+      letter-spacing: 0.2px;
+      backdrop-filter: blur(4px);
+    }
+
+    .message-box .emoji {
+      opacity: 0.4;
+      margin: 0 8px;
+      font-style: normal;
+    }
+
+    .message-box .highlight {
+      color: rgba(255, 215, 200, 0.9);
+      font-weight: 400;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      font-size: 0.65rem;
+      color: rgba(255, 255, 255, 0.15);
+      text-align: center;
+      letter-spacing: 0.5px;
+      font-weight: 300;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      padding-top: 16px;
+    }
+
+    /* canvas confetti — super halus */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.6;
+    }
+
+    /* animasi pop halus */
+    .gallery-item.pop {
+      animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes pop {
+      0% { transform: scale(0.92); }
+      40% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+
+    /* responsive */
+    @media (max-width: 480px) {
+      .container { padding: 24px 18px 28px; border-radius: 32px; }
+      .head h1 { font-size: 2.2rem; }
+      .gallery { gap: 8px; }
+      .btn { font-size: 0.75rem; padding: 12px 12px; }
+      .message-box { font-size: 0.85rem; padding: 16px 18px; min-height: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="container">
+    <div class="head">
+      <h1>Sukma</h1>
+      <span class="year">✦ 2026</span>
+    </div>
+    <div class="subhead">
+      <span>lima momen</span>
+      <span class="dot"></span>
+      <span>diam & terang</span>
+    </div>
+
+    <!-- 5 foto -->
+    <div class="gallery" id="galleryContainer">
+      <div class="gallery-item" data-moment="senja">
+        <img src="foto1.png" alt="momen sukma" loading="lazy">
+        <div class="label">senja</div>
+      </div>
+      <div class="gallery-item" data-moment="tenang">
+        <img src="foto2.png" alt="momen sukma" loading="lazy">
+        <div class="label">tenang</div>
+      </div>
+      <div class="gallery-item" data-moment="hangat">
+        <img src="foto3.png" alt="momen sukma" loading="lazy">
+        <div class="label">hangat</div>
+      </div>
+      <div class="gallery-item" data-moment="jernih">
+        <img src="foto4.png" alt="momen sukma" loading="lazy">
+        <div class="label">jernih</div>
+      </div>
+      <div class="gallery-item" data-moment="tabah">
+        <img src="foto5.png" alt="momen sukma" loading="lazy">
+        <div class="label">tabah</div>
+      </div>
+    </div>
+
+    <!-- aksi -->
+    <div class="action-row">
+      <button class="btn" id="btnMessage">
+        <span class="icon">✦</span> pesan
+      </button>
+      <button class="btn btn-primary" id="btnCelebrate">
+        <span class="icon">◆</span> rayakan
+      </button>
+    </div>
+
+    <!-- pesan -->
+    <div class="message-box" id="messageBox">
+      <span class="emoji">—</span>
+      <span id="messageText">selamat, <span class="highlight">Sukma</span></span>
+      <span class="emoji">—</span>
+    </div>
+
+    <div class="footer-note">untuk adik · diam-diam istimewa</div>
+  </div>
+
+  <script>
+    (function() {
+      // ===== CONFETTI — super smooth =====
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      let w = window.innerWidth, h = window.innerHeight;
+      let particles = [];
+      let running = false;
+      let frame = null;
+
+      function resize() {
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = w;
+        canvas.height = h;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * w;
+          this.y = Math.random() * h - h * 0.2;
+          this.size = Math.random() * 6 + 2;
+          this.speedY = Math.random() * 2.2 + 1.2;
+          this.speedX = (Math.random() - 0.5) * 1.6;
+          const hue = 320 + Math.random() * 50;
+          this.color = `hsla(${hue}, 60%, 70%, 0.35)`;
+          this.rot = Math.random() * 360;
+          this.rotSpeed = (Math.random() - 0.5) * 0.08;
+          this.shape = Math.random() > 0.6 ? 'circle' : 'rect';
+        }
+        update() {
+          this.y += this.speedY;
+          this.x += this.speedX;
+          this.rot += this.rotSpeed;
+          if (this.y > h + 20) { this.y = -20; this.x = Math.random() * w; }
+          if (this.x < -20) this.x = w + 20;
+          if (this.x > w + 20) this.x = -20;
+        }
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.rot * Math.PI / 180);
+          ctx.globalAlpha = 0.5;
+          ctx.fillStyle = this.color;
+          if (this.shape === 'circle') {
+            ctx.beginPath();
+            ctx.arc(0, 0, this.size * 0.5, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            ctx.fillRect(-this.size/2, -this.size/3, this.size, this.size * 0.5);
+          }
+          ctx.restore();
+        }
+      }
+
+      function addParticles(count = 25) {
+        for (let i = 0; i < count; i++) particles.push(new Particle());
+      }
+
+      function animate() {
+        if (!running) return;
+        ctx.clearRect(0, 0, w, h);
+        for (let p of particles) { p.update(); p.draw(); }
+        frame = requestAnimationFrame(animate);
+      }
+
+      function startConfetti(amount = 30) {
+        addParticles(amount);
+        if (!running) {
+          running = true;
+          animate();
+        }
+      }
+
+      function stopConfetti() {
+        running = false;
+        if (frame) { cancelAnimationFrame(frame); frame = null; }
+        ctx.clearRect(0, 0, w, h);
+        particles = [];
+      }
+
+      // start dengan sedikit confetti
+      setTimeout(() => { startConfetti(20); }, 500);
+
+      // ===== INTERAKSI =====
+      const messageBox = document.getElementById('messageBox');
+      const messageText = document.getElementById('messageText');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+
+      const messages = [
+        'selamat ulang tahun, <span class="highlight">Sukma</span>',
+        'satu tahun lagi, tetap dirimu',
+        'tenang, hangat, dan nyata',
+        'terima kasih sudah menjadi adik',
+        'setiap momen berharga',
+        'hari ini milikmu',
+        'diam-diam kami bangga',
+        'bahagia selalu, <span class="highlight">Sukma</span>'
+      ];
+
+      function setMessage(text) {
+        messageText.innerHTML = text;
+        messageBox.style.opacity = '0.6';
+        messageBox.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          messageBox.style.opacity = '1';
+          messageBox.style.transform = 'scale(1)';
+        }, 120);
+      }
+
+      // tombol pesan
+      document.getElementById('btnMessage').addEventListener('click', function() {
+        const msg = messages[Math.floor(Math.random() * messages.length)];
+        setMessage(msg);
+        startConfetti(8);
+        this.style.background = 'rgba(255,255,255,0.08)';
+        setTimeout(() => this.style.background = '', 200);
+      });
+
+      // tombol rayakan — full effect
+      document.getElementById('btnCelebrate').addEventListener('click', function() {
+        // confetti banyak
+        startConfetti(45);
+        // pesan random
+        const msg = messages[Math.floor(Math.random() * messages.length)];
+        setMessage(msg);
+        // pop semua foto
+        galleryItems.forEach((item, idx) => {
+          setTimeout(() => {
+            item.classList.remove('pop');
+            void item.offsetWidth;
+            item.classList.add('pop');
+          }, idx * 70);
+        });
+        // efek tombol
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => this.style.transform = '', 150);
+        this.style.background = 'rgba(200,150,180,0.3)';
+        setTimeout(() => this.style.background = '', 300);
+      });
+
+      // klik foto
+      galleryItems.forEach((item) => {
+        item.addEventListener('click', function() {
+          const label = this.querySelector('.label')?.innerText.trim() || 'momen';
+          const cap = label.charAt(0).toUpperCase() + label.slice(1);
+          setMessage(`momen <span class="highlight">${cap}</span> · untuk Sukma`);
+          // pop
+          this.classList.remove('pop');
+          void this.offsetWidth;
+          this.classList.add('pop');
+          // confetti tipis
+          startConfetti(10);
+          // highlight border
+          galleryItems.forEach(i => i.style.borderColor = 'rgba(255,255,255,0.04)');
+          this.style.borderColor = 'rgba(255,200,180,0.3)';
+          setTimeout(() => {
+            this.style.borderColor = 'rgba(255,255,255,0.04)';
+          }, 600);
+        });
+      });
+
+      // resize handler
+      window.addEventListener('resize', resize);
+
+      console.log('✦ untuk Sukma');
+    })();
+  </script>
+
+</body>
+</html>
